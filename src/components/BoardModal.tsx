@@ -38,7 +38,7 @@ export const BoardModal = ({
       setError(null); 
       onClose();
     } else {
-      setError('Назва дошки є обов’язковою');
+      setError('Name is required');
     }
   };
 
@@ -48,14 +48,14 @@ export const BoardModal = ({
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>
-              {initialName ? 'Редагувати дошку' : 'Нова дошка'}
+              {initialName ? 'Edit board' : 'New board'}
             </Text>
             <TextInput
               style={[
                 styles.input,
                 error ? styles.inputError : null,
               ]}
-              placeholder="Назва дошки"
+              placeholder="Enter a name"
               value={boardName}
               onChangeText={(text) => {
                 setBoardName(text);
@@ -64,9 +64,9 @@ export const BoardModal = ({
             />
             {error && <Text style={styles.errorText}>{error}</Text>}
             <View style={styles.actionButtons}>
-              <Button title="Скасувати" onPress={onClose} color="red" />
+              <Button title="Cancel" onPress={onClose} color="red" />
               <Button
-                title={initialName ? 'Зберегти' : 'Створити'}
+                title={initialName ? 'Save' : 'Create'}
                 onPress={handleSave}
               />
             </View>

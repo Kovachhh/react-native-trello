@@ -52,11 +52,11 @@ export default function BoardScreen({ route }: any) {
 
   const handleDeleteColumn = (columnId: string) => {
     Alert.alert(
-      'Підтвердження',
-      'Ви впевнені, що хочете видалити цю колонку?',
+      'Column removing',
+      'Are you sure you want to delete the column?',
       [
-        { text: 'Скасувати', style: 'cancel' },
-        { text: 'Видалити', onPress: () => deleteColumn(board.id, columnId), style: 'destructive' },
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Remove', onPress: () => deleteColumn(board.id, columnId), style: 'destructive' },
       ]
     );
   };
@@ -73,11 +73,11 @@ export default function BoardScreen({ route }: any) {
 
   const handleDeleteCard = (boardId: string, columnId: string, cardId: string) => {
     Alert.alert(
-      'Підтвердження',
-      'Ви впевнені, що хочете видалити цю картку?',
+      'Card removing',
+      'Are you sure you want to delete the card?',
       [
-        { text: 'Скасувати', style: 'cancel' },
-        { text: 'Видалити', onPress: () => deleteCard(boardId, columnId, cardId), style: 'destructive' },
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Remove', onPress: () => deleteCard(boardId, columnId, cardId), style: 'destructive' },
       ]
     );
   };
@@ -143,13 +143,13 @@ export default function BoardScreen({ route }: any) {
               style={styles.addCardButton}
               onPress={() => handleOpenCardCreatingModal(column.id)}
             >
-              <Text style={styles.addCardText}>+ Додати картку</Text>
+              <Text style={styles.addCardText}>+ Add card</Text>
             </TouchableOpacity>
           </View>
         ))}
         <View>
         <TouchableOpacity style={styles.addColumnButton} onPress={handleAddColumn}>
-          <Text style={styles.addColumnText}>+ Додати колонку</Text>
+          <Text style={styles.addColumnText}>+ Add column</Text>
         </TouchableOpacity>
         </View>
       </ScrollView>
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     padding: 10,
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 5,
     backgroundColor: '#fff',
     borderRadius: 5,
     elevation: 2,

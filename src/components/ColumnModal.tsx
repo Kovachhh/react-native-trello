@@ -52,7 +52,7 @@ export const ColumnModal: React.FC<ColumnModalProps> = ({
 
   const handleSave = () => {
     if (name.trim() === '') {
-      setError('Назва колонки не може бути порожньою.');
+      setError('Name is required');
       return;
     }
     setError(null);
@@ -86,7 +86,7 @@ export const ColumnModal: React.FC<ColumnModalProps> = ({
       <View style={styles.overlay}>
         <View style={styles.modalContent}>
           <Text style={styles.title}>
-            {mode === 'edit' ? 'Редагувати колонку' : 'Додати нову колонку'}
+            {mode === 'edit' ? 'Edit column' : 'Add column'}
           </Text>
 
           <TextInput
@@ -100,7 +100,7 @@ export const ColumnModal: React.FC<ColumnModalProps> = ({
           />
           {error && <Text style={styles.errorText}>{error}</Text>}
 
-          <Text style={styles.subtitle}>Виберіть колір:</Text>
+          <Text style={styles.subtitle}>Choose a color:</Text>
           <View style={styles.colorPicker}>
             {availableColors.map((item) => (
               <TouchableOpacity
@@ -123,11 +123,11 @@ export const ColumnModal: React.FC<ColumnModalProps> = ({
               style={[styles.button, styles.cancelButton]}
               onPress={onClose}
             >
-              <Text style={styles.buttonText}>Скасувати</Text>
+              <Text style={styles.buttonText}>Cancel</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.button} onPress={handleSave}>
-              <Text style={styles.buttonText}>Зберегти</Text>
+              <Text style={styles.buttonText}>Save</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -44,7 +44,7 @@ export default function HomeScreen({ navigation }: any) {
         colors={['#d1d1d1', '#2472fc']}
         style={StyleSheet.absoluteFill}
       />
-      <Text style={styles.title}>Ваші дошки</Text>
+      <Text style={styles.title}>Your boards</Text>
 
       <FlatList
         data={boards}
@@ -68,7 +68,7 @@ export default function HomeScreen({ navigation }: any) {
           </View>
         )}
         ListEmptyComponent={
-          <Text style={styles.emptyText}>Додайте першу дошку!</Text>
+          <Text style={styles.emptyText}>Add your new board!</Text>
         }
       />
 
@@ -76,7 +76,7 @@ export default function HomeScreen({ navigation }: any) {
         style={styles.addButton}
         onPress={handleAddBoard}
       >
-        <Text style={styles.addButtonText}>Додати дошку</Text>
+        <Text style={styles.addButtonText}>+ Add board</Text>
       </TouchableOpacity>
 
       <BoardModal

@@ -63,11 +63,11 @@ export const CardModal = ({
 
   const validateFields = () => {
     const newErrors = {
-      title: title ? '' : 'Назва завдання обов\'язкова.',
-      description: description ? '' : 'Опис обов\'язковий.',
-      expiredDate: expiredDate ? '' : 'Дата закінчення обов\'язкова.',
-      assignee: assignee ? '' : 'Виконавець обов\'язковий.',
-      author: author ? '' : 'Автор обов\'язковий.',
+      title: title ? '' : 'Name is required',
+      description: description ? '' : 'Description is required',
+      expiredDate: expiredDate ? '' : 'Expiration date is required',
+      assignee: assignee ? '' : 'Assignee is required',
+      author: author ? '' : 'Author is required',
     };
     setErrors(newErrors);
     return Object.values(newErrors).every((error) => !error);
@@ -118,13 +118,13 @@ export const CardModal = ({
       <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
           <Text style={styles.modalTitle}>
-            {mode === 'add' ? 'Створити завдання' : 'Редагувати завдання'}
+            {mode === 'add' ? 'Add card' : 'Edit card'}
           </Text>
 
-          <Text style={styles.label}>Назва завдання</Text>
+          <Text style={styles.label}>Name</Text>
           <TextInput
             style={[styles.input, errors.title ? styles.inputError : null]}
-            placeholder="Назва завдання"
+            placeholder="Enter a name"
             value={title}
             onChangeText={(text) => {
               setTitle(text);
@@ -135,7 +135,7 @@ export const CardModal = ({
 
           {mode === 'edit' && (
             <>
-              <Text style={styles.label}>Колонка</Text>
+              <Text style={styles.label}>Column</Text>
               <CustomSelector
                 options={columns.map((item) => ({ label: item.name, value: item.id }))}
                 selectedIndex={columns.findIndex((item) => item.id === columnId)}
@@ -144,10 +144,10 @@ export const CardModal = ({
             </>
           )}
 
-          <Text style={styles.label}>Опис</Text>
+          <Text style={styles.label}>Description</Text>
           <TextInput
             style={[styles.input, errors.description ? styles.inputError : null]}
-            placeholder="Опис"
+            placeholder="Enter a description"
             value={description}
             onChangeText={(text) => {
               setDescription(text);
@@ -158,7 +158,7 @@ export const CardModal = ({
           />
           {errors.description ? <Text style={styles.errorText}>{errors.description}</Text> : null}
 
-          <Text style={styles.label}>Дата закінчення</Text>
+          <Text style={styles.label}>Expiration date</Text>
           <View>
             <DateTimePicker
               value={expiredDate || new Date()}
@@ -169,10 +169,10 @@ export const CardModal = ({
           </View>
           {errors.expiredDate ? <Text style={styles.errorText}>{errors.expiredDate}</Text> : null}
 
-          <Text style={styles.label}>Виконавець</Text>
+          <Text style={styles.label}>Assignee</Text>
           <TextInput
             style={[styles.input, errors.assignee ? styles.inputError : null]}
-            placeholder="Виконавець"
+            placeholder="Enter an assignee"
             value={assignee}
             onChangeText={(text) => {
               setAssignee(text);
@@ -181,10 +181,10 @@ export const CardModal = ({
           />
           {errors.assignee ? <Text style={styles.errorText}>{errors.assignee}</Text> : null}
 
-          <Text style={styles.label}>Автор</Text>
+          <Text style={styles.label}>Author</Text>
           <TextInput
             style={[styles.input, errors.author ? styles.inputError : null]}
-            placeholder="Автор"
+            placeholder="Enter an author"
             value={author}
             onChangeText={(text) => {
               setAuthor(text);
@@ -195,13 +195,13 @@ export const CardModal = ({
 
           <View style={styles.actionButtons}>
             <Button 
-              title="Закрити" 
+              title="Cancel" 
               onPress={() => {
                 clearFields();
                 onClose();
               }} 
               color="red" />
-            <Button title="Зберегти" onPress={handleSave} />
+            <Button title={mode === 'edit' ? "Save" : "Create"} onPress={handleSave} />
           </View>
         </View>
       </View>

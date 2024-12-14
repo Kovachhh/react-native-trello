@@ -19,25 +19,25 @@ export const CardViewModal: React.FC<CardViewModalProps> = ({
       <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
           <Text style={styles.modalTitle}>
-            Перегляд завдання
+            View card
           </Text>
 
-          <Text style={styles.label}>Назва завдання</Text>
+          <Text style={styles.label}>Name</Text>
           <Text style={styles.value}>{card.title}</Text>
 
-          <Text style={styles.label}>Опис</Text>
+          <Text style={styles.label}>Description</Text>
           <Text style={styles.value}>{card.description}</Text>
 
-          <Text style={styles.label}>Дата закінчення</Text>
+          <Text style={styles.label}>Expiration date</Text>
           <Text style={styles.value}>{new Date(card.expiredDate).toLocaleString()}</Text>
 
-          <Text style={styles.label}>Виконавець</Text>
+          <Text style={styles.label}>Assignee</Text>
           <Text style={styles.value}>{card.assignee}</Text>
 
-          <Text style={styles.label}>Автор</Text>
+          <Text style={styles.label}>Author</Text>
           <Text style={styles.value}>{card.author}</Text>
 
-          <Text style={styles.label}>Створено</Text>
+          <Text style={styles.label}>Created</Text>
           <Text style={styles.value}>{new Date(card.createdDate).toLocaleString()}</Text>
 
           <View style={styles.actionButtons}>
