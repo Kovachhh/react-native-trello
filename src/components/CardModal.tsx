@@ -112,7 +112,7 @@ export const CardModal = ({
 
   const handleDateChange = (event: any, selectedDate?: Date) => {
     if (Platform.OS === 'android') {
-      setShowDatePicker(false); // Close picker on Android
+      setShowDatePicker(false);
     }
     if (selectedDate) {
       setExpiredDate(selectedDate);
@@ -122,7 +122,7 @@ export const CardModal = ({
 
   const formatDate = (date: Date | null) => {
     if (!date) return 'Select date';
-    return date.toLocaleDateString(); // Format date for display
+    return date.toLocaleDateString();
   };
 
   return (
