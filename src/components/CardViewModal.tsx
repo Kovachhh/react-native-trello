@@ -29,7 +29,7 @@ export const CardViewModal: React.FC<CardViewModalProps> = ({
           <Text style={styles.value}>{card.description}</Text>
 
           <Text style={styles.label}>Expiration date</Text>
-          <Text style={styles.value}>{new Date(card.expiredDate).toLocaleString()}</Text>
+          <Text style={styles.value}>{new Date(card.expiredDate).toLocaleDateString()}</Text>
 
           <Text style={styles.label}>Assignee</Text>
           <Text style={styles.value}>{card.assignee}</Text>
@@ -38,7 +38,7 @@ export const CardViewModal: React.FC<CardViewModalProps> = ({
           <Text style={styles.value}>{card.author}</Text>
 
           <Text style={styles.label}>Created</Text>
-          <Text style={styles.value}>{new Date(card.createdDate).toLocaleString()}</Text>
+          <Text style={styles.value}>{new Date(card.createdDate).toLocaleDateString()}</Text>
 
           <View style={styles.actionButtons}>
             <Button title="Ок" onPress={onClose} color="blue" />

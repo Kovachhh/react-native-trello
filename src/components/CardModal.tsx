@@ -6,6 +6,8 @@ import {
   Button,
   Text,
   StyleSheet,
+  TouchableOpacity,
+  Platform,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useBoards } from '../context/BoardsContext';
@@ -46,6 +48,8 @@ export const CardModal = ({
     assignee: '',
     author: '',
   });
+
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   useEffect(() => {
     if (mode === 'edit' && card) {
@@ -107,10 +111,18 @@ export const CardModal = ({
   };
 
   const handleDateChange = (event: any, selectedDate?: Date) => {
+    if (Platform.OS === 'android') {
+      setShowDatePicker(false); // Close picker on Android
+    }
     if (selectedDate) {
       setExpiredDate(selectedDate);
       setErrors({ ...errors, expiredDate: '' });
     }
+  };
+
+  const formatDate = (date: Date | null) => {
+    if (!date) return 'Select date';
+    return date.toLocaleDateString(); // Format date for display
   };
 
   return (
@@ -159,15 +171,21 @@ export const CardModal = ({
           {errors.description ? <Text style={styles.errorText}>{errors.description}</Text> : null}
 
           <Text style={styles.label}>Expiration date</Text>
-          <View>
+          <TouchableOpacity
+            style={[styles.input, styles.datePicker]}
+            onPress={() => setShowDatePicker(true)}
+          >
+            <Text>{formatDate(expiredDate)}</Text>
+          </TouchableOpacity>
+          {errors.expiredDate ? <Text style={styles.errorText}>{errors.expiredDate}</Text> : null}
+          {showDatePicker && (
             <DateTimePicker
               value={expiredDate || new Date()}
               mode="date"
               onChange={handleDateChange}
               minimumDate={new Date()}
             />
-          </View>
-          {errors.expiredDate ? <Text style={styles.errorText}>{errors.expiredDate}</Text> : null}
+          )}
 
           <Text style={styles.label}>Assignee</Text>
           <TextInput
@@ -194,14 +212,15 @@ export const CardModal = ({
           {errors.author ? <Text style={styles.errorText}>{errors.author}</Text> : null}
 
           <View style={styles.actionButtons}>
-            <Button 
-              title="Cancel" 
+            <Button
+              title="Cancel"
               onPress={() => {
                 clearFields();
                 onClose();
-              }} 
-              color="red" />
-            <Button title={mode === 'edit' ? "Save" : "Create"} onPress={handleSave} />
+              }}
+              color="red"
+            />
+            <Button title={mode === 'edit' ? 'Save' : 'Create'} onPress={handleSave} />
           </View>
         </View>
       </View>
@@ -247,6 +266,10 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 12,
     marginBottom: 10,
+  },
+  datePicker: {
+    justifyContent: 'center',
+    height: 40,
   },
   actionButtons: {
     flexDirection: 'row',
